@@ -28,7 +28,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "docker build -t ${env.RepositoryDockerHub}/${env.NameContainer}:${env.BUILD_NUMBER} ."
+                sh "docker build -t ${env.RepositoryDockerHub}/${env.NameContainer}:${env.BUILD_NUMBER} docker/."
             }
         }
 
