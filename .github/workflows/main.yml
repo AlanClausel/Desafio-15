@@ -11,11 +11,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
-    env:
-      DOCKERHUB_CREDENTIALS: ${{ secrets.TOKEN }}
-      RepositoryDockerHub: alanclausel
-      NameContainer: portfolio-website
-      
     steps:
       - 
         name: Checkout
@@ -42,12 +37,3 @@ jobs:
           file: ./docker/dockerfile 
           push: true
           tags: ${{ secrets.USER_DOCKER }}/portfolio-website:${{ github.run_number }}
-      - 
-        name: Deploy container
-        run: |
-          docker stop ${{ env.NameContainer }} || true
-          docker rm -f ${{ env.NameContainer }} || true
-          docker run -d -p 8082:80 --name ${{ env.NameContainer }} ${{ env.RepositoryDockerHub }}/${{ env.NameContainer }}:${{ github.run_number }}
-      -
-        name: Docker logout
-        run: docker logout
