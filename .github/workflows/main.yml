@@ -35,4 +35,4 @@ jobs:
           context: ./docker  
           file: ./docker/dockerfile 
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-website:${{ github.run_number }}
+          tags: ${{ secrets.USER_DOCKER }}/portfolio-website:${{ github.run_number }}
